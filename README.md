@@ -13,7 +13,7 @@ akamai://example-nsu.akamaihd.net/395007/my/path/
 example-nsu.akamaihd.net/395007/my
 example-nsu.akamaihd.net/395007
 ```
-The host name and CP code (here `395007`) are two required elements of the `arl`
+The host name and CP code (here `395007`) are two required elements of the `arl`.
 Trailing slash doesn't indicate files inside the target folder, so avoiding it is a cleaner practice.
 
 `key` and `keyname` - a pair you must have for authentication when using NetStorage.
@@ -57,7 +57,7 @@ ns.upload(arl, key, keyname, file)
 ns.delete(arl, key, keyname)
 # files and symlinks only
 ```
-Symlinks does not work as such when you access NetStorage, they are followed by Akamai CDN using them as the origin.
+
 ```python
 print(ns.xdir(arl, key, keyname).text)
 # xdir().text returns XML string describing contents of a folder specified by arl
@@ -120,11 +120,14 @@ ns.symlink(arl, key, keyname, target)
 # target e.g. "/395007/my/path/dir-v-test/vtest2"
 # target e.g. "../vtest/" (relative to arl)
 ```
+Symlinks does not work as such when you access NetStorage, they are followed by Akamai CDN using them as the origin.
 
+
+-----------
 *Packaging*
 ```
 pip install --upgrade setuptools wheel twine
 python3 setup.py sdist bdist_wheel
 twine upload dist/*
-rm -r dist build base_ns.egg-info
+rm -r dist build anesto.egg-info
 ```
